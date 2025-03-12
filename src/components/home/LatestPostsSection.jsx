@@ -7,48 +7,45 @@ import { fetchPosts } from '../../utils/api'
 const mockPosts = [
   {
     id: 1,
-    attributes: {
-      title: "Getting Started with Content Management",
-      subtitle: "A beginner's guide to managing your content effectively",
-      thumbnail: {
-        data: {
-          attributes: {
-            url: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-          }
-        }
-      },
-      createdAt: "2023-11-15"
-    }
+    documentId: "hs8nr03xf0x6ghx8f4dxj7fs",
+    title: "Getting Started with Content Management",
+    subtitle: "A beginner's guide to managing your content effectively",
+    thumbnail: {
+      id: 1,
+      documentId: "kjfic1zqkczbfvgpgv3klty7",
+      name: "thumbnail1.png",
+      url: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+    },
+    content: "This is sample content for the first post.",
+    createdAt: "2023-11-15"
   },
   {
     id: 2,
-    attributes: {
-      title: "Best Practices for Web Design in 2023",
-      subtitle: "Learn the latest trends and techniques in web design",
-      thumbnail: {
-        data: {
-          attributes: {
-            url: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-          }
-        }
-      },
-      createdAt: "2023-11-10"
-    }
+    documentId: "hs8nr03xf0x6ghx8f4dxj7ft",
+    title: "Best Practices for Web Design in 2023",
+    subtitle: "Learn the latest trends and techniques in web design",
+    thumbnail: {
+      id: 2,
+      documentId: "kjfic1zqkczbfvgpgv3klty8",
+      name: "thumbnail2.png",
+      url: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+    },
+    content: "This is sample content for the second post.",
+    createdAt: "2023-11-10"
   },
   {
     id: 3,
-    attributes: {
-      title: "Optimizing Your Website for Performance",
-      subtitle: "Tips and tricks to make your website lightning fast",
-      thumbnail: {
-        data: {
-          attributes: {
-            url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
-          }
-        }
-      },
-      createdAt: "2023-11-05"
-    }
+    documentId: "hs8nr03xf0x6ghx8f4dxj7fu",
+    title: "Optimizing Your Website for Performance",
+    subtitle: "Tips and tricks to make your website lightning fast",
+    thumbnail: {
+      id: 3,
+      documentId: "kjfic1zqkczbfvgpgv3klty9",
+      name: "thumbnail3.png",
+      url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+    },
+    content: "This is sample content for the third post.",
+    createdAt: "2023-11-05"
   }
 ]
 
@@ -101,17 +98,17 @@ const LatestPostsSection = () => {
             >
               <figure>
                 <img 
-                  src={post.attributes?.thumbnail?.data?.attributes?.url || 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'} 
-                  alt={post.attributes?.title || 'Blog post'} 
+                  src={post.thumbnail?.url || 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'} 
+                  alt={post.title || 'Blog post'} 
                   className="h-48 w-full object-cover"
                 />
               </figure>
               <div className="card-body">
-                <h3 className="card-title">{post.attributes?.title || 'Untitled Post'}</h3>
-                <p className="text-sm text-base-content/70">{post.attributes?.subtitle || 'No description available'}</p>
+                <h3 className="card-title">{post.title || 'Untitled Post'}</h3>
+                <p className="text-sm text-base-content/70">{post.subtitle || 'No description available'}</p>
                 <div className="card-actions justify-between items-center mt-4">
                   <span className="text-sm text-base-content/60">
-                    {new Date(post.attributes?.createdAt || new Date()).toLocaleDateString()}
+                    {new Date(post.createdAt || new Date()).toLocaleDateString()}
                   </span>
                   <Link to={`/blog/${post.id}`} className="btn btn-primary btn-sm">
                     Read More
