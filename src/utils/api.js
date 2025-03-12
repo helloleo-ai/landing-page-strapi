@@ -29,7 +29,7 @@ export const fetchPosts = async () => {
 
 export const fetchPostById = async (id) => {
   try {
-    const response = await api.get(`/post/${id}`)
+    const response = await api.get(`/posts/${id}`)
     // Extract the data from the nested structure
     return response.data.data || null
   } catch (error) {
