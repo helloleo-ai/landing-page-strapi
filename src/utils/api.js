@@ -17,7 +17,7 @@ console.log('Using Strapi API URL:', STRAPI_API_URL)
 
 export const fetchPosts = async () => {
   try {
-    const response = await api.get('/post')
+    const response = await api.get('/posts')
     console.log('Posts fetched successfully:', response.data)
     // Extract the data from the nested structure
     return response.data.data || []
