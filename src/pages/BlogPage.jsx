@@ -49,15 +49,15 @@ const BlogPage = () => {
   }
   
   return (
-    <div className="container mx-auto py-16">
+    <div className="container mx-auto py-24 px-4">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">Our Blog</h1>
+        <h1 className="text-3xl md:text-4xl font-bold mb-4">Our Blog</h1>
         <p className="max-w-2xl mx-auto text-base-content/70">
           Discover insights, stories, and knowledge from our team.
         </p>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         {posts.map((post, index) => (
           <motion.div
             key={post.id}

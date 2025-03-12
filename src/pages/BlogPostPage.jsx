@@ -59,7 +59,7 @@ const BlogPostPage = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="container mx-auto py-16 px-4"
+      className="container mx-auto py-24 px-4 mt-8"
     >
       <div className="max-w-4xl mx-auto">
         <Link to="/blog" className="btn btn-ghost mb-8">
@@ -70,11 +70,11 @@ const BlogPostPage = () => {
           <img 
             src={post.thumbnail.url || 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'} 
             alt={post.title} 
-            className="w-full h-[400px] object-cover rounded-lg mb-8"
+            className="w-full h-[200px] sm:h-[300px] md:h-[400px] object-cover rounded-lg mb-8"
           />
         )}
         
-        <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
+        <h1 className="text-2xl md:text-4xl font-bold mb-4">{post.title}</h1>
         <p className="text-base-content/70 mb-2">{post.subtitle}</p>
         <div className="divider my-8"></div>
         
