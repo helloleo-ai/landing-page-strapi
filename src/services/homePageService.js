@@ -12,7 +12,7 @@ const api = axios.create({
 // Fetch HomePage data from Strapi
 export const fetchHomePage = async () => {
   try {
-    const response = await api.get('/home-page?populate=deep');
+    const response = await api.get('/home-page?populate=*');
     console.log('HomePage fetched successfully:', response.data);
     return response.data.data || null;
   } catch (error) {
