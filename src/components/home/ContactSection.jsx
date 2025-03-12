@@ -46,16 +46,16 @@ const ContactSection = () => {
   }
   
   return (
-    <section id="contact" className="py-16 bg-base-100">
+    <section id="contact" className="py-12 md:py-16 bg-base-100 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Contact Us</h2>
-          <p className="max-w-2xl mx-auto text-base-content/70">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">Contact Us</h2>
+          <p className="max-w-2xl mx-auto text-base-content/70 text-sm md:text-base">
             Have questions or feedback? We'd love to hear from you. Fill out the form below and we'll get back to you as soon as possible.
           </p>
         </div>
         
-        <div className="max-w-2xl mx-auto">
+        <div className="w-full max-w-2xl mx-auto">
           <motion.form 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

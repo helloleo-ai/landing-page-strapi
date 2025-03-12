@@ -6,7 +6,7 @@ import ContactSection from '../components/home/ContactSection'
 
 const HomePage = () => {
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <HeroSection />
       <motion.div
         initial={{ opacity: 0 }}
