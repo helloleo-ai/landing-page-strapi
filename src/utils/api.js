@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-// This will be replaced with the actual STRAPI_URL from project settings
-const STRAPI_URL = process.env.STRAPI_URL || 'https://your-strapi-url.com'
+// Get the Strapi API URL from environment variables
+const STRAPI_API_URL = import.meta.env.VITE_STRAPI_API_URL || 'http://localhost:1337/api'
 
 const api = axios.create({
-  baseURL: `${STRAPI_URL}/api`,
+  baseURL: STRAPI_API_URL,
 })
 
 export const fetchPosts = async () => {
