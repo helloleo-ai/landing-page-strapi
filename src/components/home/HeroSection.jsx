@@ -1,6 +1,10 @@
 import { motion } from 'framer-motion'
 
-const HeroSection = () => {
+const HeroSection = ({ header }) => {
+  // Default values if header is not provided
+  const title = header?.title || "Welcome to Our Platform";
+  const subtitle = header?.subtitle || "Discover amazing content and stay updated with the latest news and articles. Our platform provides you with the best experience and valuable information.";
+
   return (
     <div className="hero min-h-[70vh] bg-base-200 px-4 sm:px-6 lg:px-8 py-12 md:py-16">
       <div className="hero-content flex-col lg:flex-row-reverse gap-8 md:gap-12">
@@ -22,10 +26,9 @@ const HeroSection = () => {
           transition={{ duration: 0.5 }}
           className="w-full lg:w-1/2"
         >
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">Welcome to Our Platform</h1>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">{title}</h1>
           <p className="py-6 text-base md:text-lg">
-            Discover amazing content and stay updated with the latest news and articles.
-            Our platform provides you with the best experience and valuable information.
+            {subtitle}
           </p>
           <div className="flex flex-wrap gap-4">
             <button className="btn btn-primary">Get Started</button>
