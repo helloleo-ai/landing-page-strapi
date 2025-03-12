@@ -45,8 +45,13 @@ const HomePage = () => {
   }
 
   // Extract data from the response
-  const header = homePageData?.attributes?.Header
-  const infoCards = homePageData?.attributes?.InfoCard
+  const pageContent = homePageData?.PageContent || [];
+  
+  // Find header component
+  const header = pageContent.find(item => item.__component === "components.header");
+  
+  // Find all info card components
+  const infoCards = pageContent.filter(item => item.__component === "components.info-card");
 
   return (
     <div className="overflow-x-hidden">

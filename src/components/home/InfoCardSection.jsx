@@ -18,28 +18,17 @@ const InfoCardSection = ({ infoCards = [] }) => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="card bg-base-200 shadow-xl overflow-hidden"
             >
-              {card.image?.data?.attributes?.url && (
-                <figure>
-                  <img 
-                    src={card.image.data.attributes.url} 
-                    alt={card.title} 
-                    className="w-full h-48 object-cover"
-                  />
-                </figure>
-              )}
               <div className="card-body">
                 <h3 className="card-title">{card.title}</h3>
                 <p>{card.description}</p>
-                {card.button && (
-                  <div className="card-actions justify-end mt-4">
-                    <a 
-                      href={card.button.link} 
-                      className="btn btn-primary"
-                    >
-                      {card.button.title}
-                    </a>
-                  </div>
-                )}
+                <div className="card-actions justify-end mt-4">
+                  <a 
+                    href="#learn-more" 
+                    className="btn btn-primary"
+                  >
+                    Learn More
+                  </a>
+                </div>
               </div>
             </motion.div>
           ))}
