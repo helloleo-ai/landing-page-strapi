@@ -1,38 +1,83 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { fetchPosts } from '../../utils/api'
 
-// This will be replaced with actual Strapi data later
+// Fallback mock data in case API fails
 const mockPosts = [
   {
     id: 1,
-    title: "Getting Started with Content Management",
-    subtitle: "A beginner's guide to managing your content effectively",
-    thumbnail: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-    createdAt: "2023-11-15"
+    attributes: {
+      title: "Getting Started with Content Management",
+      subtitle: "A beginner's guide to managing your content effectively",
+      thumbnail: {
+        data: {
+          attributes: {
+            url: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+          }
+        }
+      },
+      createdAt: "2023-11-15"
+    }
   },
   {
     id: 2,
-    title: "Best Practices for Web Design in 2023",
-    subtitle: "Learn the latest trends and techniques in web design",
-    thumbnail: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-    createdAt: "2023-11-10"
+    attributes: {
+      title: "Best Practices for Web Design in 2023",
+      subtitle: "Learn the latest trends and techniques in web design",
+      thumbnail: {
+        data: {
+          attributes: {
+            url: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+          }
+        }
+      },
+      createdAt: "2023-11-10"
+    }
   },
   {
     id: 3,
-    title: "Optimizing Your Website for Performance",
-    subtitle: "Tips and tricks to make your website lightning fast",
-    thumbnail: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
-    createdAt: "2023-11-05"
+    attributes: {
+      title: "Optimizing Your Website for Performance",
+      subtitle: "Tips and tricks to make your website lightning fast",
+      thumbnail: {
+        data: {
+          attributes: {
+            url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+          }
+        }
+      },
+      createdAt: "2023-11-05"
+    }
   }
 ]
 
 const LatestPostsSection = () => {
   const [posts, setPosts] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
   
   useEffect(() => {
-    // This will be replaced with a fetch from Strapi API
-    setPosts(mockPosts)
+    const loadPosts = async () => {
+      try {
+        setLoading(true)
+        const fetchedPosts = await fetchPosts()
+        if (fetchedPosts && fetchedPosts.length > 0) {
+          setPosts(fetchedPosts)
+        } else {
+          // Fallback to mock data if no posts returned
+          setPosts(mockPosts)
+        }
+      } catch (err) {
+        console.error('Error loading posts:', err)
+        setError(true)
+        setPosts(mockPosts)
+      } finally {
+        setLoading(false)
+      }
+    }
+    
+    loadPosts()
   }, [])
   
   return (
@@ -56,17 +101,17 @@ const LatestPostsSection = () => {
             >
               <figure>
                 <img 
-                  src={post.thumbnail} 
-                  alt={post.title} 
+                  src={post.attributes?.thumbnail?.data?.attributes?.url || 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'} 
+                  alt={post.attributes?.title || 'Blog post'} 
                   className="h-48 w-full object-cover"
                 />
               </figure>
               <div className="card-body">
-                <h3 className="card-title">{post.title}</h3>
-                <p className="text-sm text-base-content/70">{post.subtitle}</p>
+                <h3 className="card-title">{post.attributes?.title || 'Untitled Post'}</h3>
+                <p className="text-sm text-base-content/70">{post.attributes?.subtitle || 'No description available'}</p>
                 <div className="card-actions justify-between items-center mt-4">
                   <span className="text-sm text-base-content/60">
-                    {new Date(post.createdAt).toLocaleDateString()}
+                    {new Date(post.attributes?.createdAt || new Date()).toLocaleDateString()}
                   </span>
                   <Link to={`/blog/${post.id}`} className="btn btn-primary btn-sm">
                     Read More
