@@ -82,7 +82,7 @@ const BlogPage = () => {
                 <span className="text-sm text-base-content/60">
                   {new Date(post.createdAt || new Date()).toLocaleDateString()}
                 </span>
-                <Link to={`/blog/${post.id}`} className="btn btn-primary btn-sm">
+                <Link to={`/blog/${post.documentId}`} className="btn btn-primary btn-sm">
                   Read More
                 </Link>
               </div>
