@@ -17,7 +17,7 @@ console.log('Using Strapi API URL:', STRAPI_API_URL)
 
 export const fetchPosts = async () => {
   try {
-    const response = await api.get('/posts?populate=*')
+    const response = await api.get('/post?populate=*')
     console.log('Posts fetched successfully:', response.data)
     return response.data.data
   } catch (error) {
@@ -28,7 +28,7 @@ export const fetchPosts = async () => {
 
 export const fetchPostById = async (id) => {
   try {
-    const response = await api.get(`/posts/${id}?populate=*`)
+    const response = await api.get(`/post/${id}?populate=*`)
     return response.data.data
   } catch (error) {
     console.error(`Error fetching post with id ${id}:`, error)
